@@ -9,6 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       fieldName: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       dateComplete: {
@@ -22,10 +23,12 @@ module.exports = {
       },
       createdAt: {
         allowNull: false,
+        defaultValue: new Date(),
         type: Sequelize.DATE
       },
       updatedAt: {
         allowNull: false,
+        defaultValue: new Date(),
         type: Sequelize.DATE
       }
     });
