@@ -5,6 +5,6 @@ const ctrl = require('../controllers');
 
 router.post('/login', ctrl.auth.login);
 router.get('/', ctrl.auth.verifyUser);
-router.get('/', ctrl.auth.verifyUser);
+router.post('/signup', ctrl.auth.signup);
 
 module.exports = router;
