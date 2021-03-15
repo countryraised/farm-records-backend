@@ -24,8 +24,15 @@ const getProfile = (req, res) => {
     
 }
 
+const getAll = (req, res) => {
+    FarmRecord.findAll()
+    .then(records => {
+        res.status(200).json(records)
+    })
+}
+
 
 module.exports = {
     getProfile,
-    
+    getAll,
 }
