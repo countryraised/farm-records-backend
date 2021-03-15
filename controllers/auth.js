@@ -7,6 +7,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const signup = (req, res) => {
+    console.log("signup running");
     bcrypt.genSalt(10, (err, salt) => {
         if(err){
             res.status(500).send(`ERROR: ${err}`);
@@ -29,6 +30,9 @@ const signup = (req, res) => {
                         expiresIn: "30 days"
                     }
                 )
+                // res.cookie("jwt", token);
+                // res.redirect(`/users/profile/${newUser.id}`);
+                // replaced by this below??
 
                 res.status(200).json({
                     "token" : token,
