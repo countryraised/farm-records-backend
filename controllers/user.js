@@ -1,6 +1,6 @@
 const User = require('../models').User;
-const City = require('../models').City;
-const Post = require('../models').Post;
+const FarmRecord = require('../models').FarmRecord;
+
 
 
 
@@ -10,12 +10,13 @@ const getProfile = (req, res) => {
         sort = 'ASC';
     
     User.findByPk(req.params.id, {
-        include: [
-            
-        ],
+        include: [{
+            model: FarmRecord,
+            attributes: ["id", "fieldName", "dateComplete", "operationType", "details", "userId"]
+        }],
         attributes: ['id', 'name', 'username'],
         order: [
-            [{model: Post}, 'createdAt', sort]
+            [{model: FarmRecord}, 'createdAt', sort]
         ]
     })
     .then(userProfile => {

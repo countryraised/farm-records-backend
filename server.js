@@ -48,6 +48,7 @@ app.use((req,res,next) => {
 app.use('/farmrecord', routes.farmrecord);
 app.use('/user', verifyToken, routes.user);
 app.use('/auth', routes.auth);
+app.use('/auth/verify', verifyToken, routes.auth);
 
 app.listen(process.env.PORT, () => {
     console.log(`I am listening on port ${process.env.PORT}`);

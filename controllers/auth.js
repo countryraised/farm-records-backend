@@ -38,6 +38,7 @@ const signup = (req, res) => {
                     "token" : token,
                     "user": newUser
                 });
+                // req.send(newUser)
             })
             .catch(err => {
                 res.status(400).send(`ERROR: ${err}`);
@@ -55,27 +56,29 @@ const login = (req, res) => {
     })
     .then(foundUser => {
         if(foundUser){
-            // bcrypt.compare(req.body.password, foundUser.password, (err, match) => {
-            //     if(match){
+            bcrypt.compare(req.body.password, foundUser.password, (err, match) => {
+                if(match){
 
-                    // const token = jwt.sign(
-                    //     {
-                    //         username: foundUser.username,
-                    //         id: foundUser.id
-                    //     },
-                    //     process.env.JWT_SECRET,
-                    //     {
-                    //         expiresIn: "30 days"
-                    //     }
-                    // )
+                    const token = jwt.sign(
+                        {
+                            username: foundUser.username,
+                            id: foundUser.id
+                        },
+                        process.env.JWT_SECRET,
+                        {
+                            expiresIn: "30 days"
+                        }
+                    )
                     // res.status(200).json({
                     //     "token" : token,
                     //     "user": foundUser
                     // });
-            //     } else {
-            //         res.status(400).send(`ERROR: Incorrect Username/Password`);
-            //     }
-            // })
+                     res.send(foundUser)
+                     
+                } else {
+                    res.status(400).send(`ERROR: Incorrect Username/Password`);
+                }
+            })
         }
         else{
             res.status(400).send(`ERROR: Incorrect Username/Password`);
@@ -88,7 +91,7 @@ const login = (req, res) => {
 
 const verifyUser = (req, res) => {
     User.findByPk(req.params.id, {
-        attributes: ['id', 'username', 'password']
+        attributes: ['id', 'username']
     })
     .then(foundUser => {
         res.status(200).json(foundUser);
