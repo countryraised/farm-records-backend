@@ -3,6 +3,6 @@ const router = express.Router();
 const ctrl = require('../controllers');
 
 router.get('/all', ctrl.farmrecord.getAll);
-router.get('/create', ctrl.farmrecord.createField);
+router.post('/createfield', ctrl.farmrecord.createField);
 
 module.exports = router;

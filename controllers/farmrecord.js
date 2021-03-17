@@ -12,9 +12,9 @@ const getAll = (req, res) => {
 
 const createField = (req, res) => {
     FarmRecord.create(req.body)
-    .then(newField => {        
+    .then(newField => {   
         res.send(newField);
-    })    
+    })
 }
 
 module.exports = {
