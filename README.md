@@ -1,4 +1,4 @@
-## Project 2: High-Fidelity (Hi-Fi)
+## Project 4: Farm-Record-App
 
 This is a project to work on Model View Controllers and GitHub collaboration. We created an app to track record ownership.
 
